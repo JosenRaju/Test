@@ -1,26 +1,32 @@
-import java.util.Scanner;
+import java.util.*;
 
-// Problem - 2
+// Problem - 4
 
 public class Main{
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+
+        int[] numbers = {1, 2, 8, 9, 12, 46, 76, 82, 15, 20, 30};
 
 
-        System.out.print("Enter a: ");
-        int a = scanner.nextInt();
+        Map<Integer, Integer> multipleCount = new LinkedHashMap<>();
 
-
-        int number = 1;
-        for (int i = 0; i < a; i++) {
-            System.out.print(number);
-            if (i < a - 1) {
-                System.out.print(", ");
-            }
-            number += 2;
+        for (int i = 1; i <= 9; i++) {
+            multipleCount.put(i, 0);
         }
 
-        scanner.close();
+
+        for (int divisor = 1; divisor <= 9; divisor++) {
+            int count = 0;
+            for (int num : numbers) {
+                if (num % divisor == 0) {
+                    count++;
+                }
+            }
+            multipleCount.put(divisor, count);
+        }
+
+
+        System.out.println(multipleCount);
     }
 }
